@@ -31331,7 +31331,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _pet = require("@frontendmasters/pet");
+var _pet = _interopRequireWildcard(require("@frontendmasters/pet"));
 
 var _UseDropdown = _interopRequireDefault(require("./UseDropdown"));
 
@@ -31376,6 +31376,19 @@ var SearchParams = function SearchParams() {
       breeds = _useState4[0],
       setBreeds = _useState4[1];
 
+  (0, _react.useEffect)(function () {
+    setBreeds([]);
+    setBreeds("");
+
+    _pet.default.breeds(animal).then(function (_ref) {
+      var breeds = _ref.breeds;
+      var breedStrings = breeds.map(function (_ref2) {
+        var name = _ref2.name;
+        return name;
+      });
+      setBreeds(breedStrings);
+    }, console.error);
+  }, [animal]);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "search-params"
   }, /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", {
@@ -31446,7 +31459,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51663" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56784" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
