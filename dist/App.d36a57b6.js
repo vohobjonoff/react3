@@ -29580,9 +29580,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // 
 const Pet = props => {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: ""
-  }, /*#__PURE__*/_react.default.createElement("h1", null, props.name), /*#__PURE__*/_react.default.createElement("h1", null, props.animal), /*#__PURE__*/_react.default.createElement("h1", null, props.breed));
+  const {
+    name,
+    animal,
+    breed,
+    media,
+    location,
+    id
+  } = props;
+  let hero = "http://placecorgi.com/300/300";
+
+  if (media.length) {
+    hero = media[0].small;
+  }
+
+  return /*#__PURE__*/_react.default.createElement("a", {
+    href: '/details/${id}',
+    className: "pet"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "image-container"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: hero,
+    alt: name
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, name), /*#__PURE__*/_react.default.createElement("h2", null, `${animal} - ${breed} - ${location} `)));
 };
 
 var _default = Pet;
@@ -31297,7 +31317,41 @@ const useDropdown = (label, defaultState, options) => {
 
 var _default = useDropdown;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"SearchParams.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"Result.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Pet = _interopRequireDefault(require("./Pet"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Reasults = ({
+  pets
+}) => {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "search"
+  }, !pets.length ? /*#__PURE__*/_react.default.createElement("h1", null, "No pets found") : pets.map(pet => {
+    return /*#__PURE__*/_react.default.createElement(_Pet.default, {
+      animal: pet.type,
+      key: pet.id,
+      name: pet.name,
+      breed: pet.breeds.primary,
+      media: pet.photos,
+      location: `${pet.contact.address.city}, ${pet.contact.address.state}`,
+      id: pet.id
+    });
+  }));
+};
+
+var _default = Reasults;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","./Pet":"Pet.js"}],"SearchParams.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31310,6 +31364,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _pet = _interopRequireWildcard(require("@frontendmasters/pet"));
 
 var _UseDropdown = _interopRequireDefault(require("./UseDropdown"));
+
+var _Result = _interopRequireDefault(require("./Result"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31365,12 +31421,12 @@ const SearchParams = () => {
     value: location,
     placeholder: "Location",
     onChange: e => setLocation(e.target.value)
-  })), /*#__PURE__*/_react.default.createElement(AnimalDropdown, null), /*#__PURE__*/_react.default.createElement(BreedDropdown, null), /*#__PURE__*/_react.default.createElement("button", null, "Submit")));
+  })), /*#__PURE__*/_react.default.createElement(AnimalDropdown, null), /*#__PURE__*/_react.default.createElement(BreedDropdown, null), /*#__PURE__*/_react.default.createElement("button", null, "Submit")), /*#__PURE__*/_react.default.createElement(_Result.default, null));
 };
 
 var _default = SearchParams;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","@frontendmasters/pet":"../node_modules/@frontendmasters/pet/index.js","./UseDropdown":"UseDropdown.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","@frontendmasters/pet":"../node_modules/@frontendmasters/pet/index.js","./UseDropdown":"UseDropdown.js","./Result":"Result.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import pet, { ANIMALS } from '@frontendmasters/pet'
 import useDropdown from './UseDropdown'
+import Result from './Result'
 
 
 
@@ -57,6 +58,7 @@ const SearchParams = () => {
 
                 <button>Submit</button>
             </form>
+            <Result />
         </div>
     )
 }

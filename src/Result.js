@@ -16,6 +16,7 @@ const Reasults = ({ pets }) => {
                             location={`${pet.contact.address.city}, ${pet.contact.address.state}`}
                             id={pet.id}
 
+
                         />
                     )
                 })
