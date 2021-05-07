@@ -29579,7 +29579,7 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // 
-var Pet = function Pet(props) {
+const Pet = props => {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: ""
   }, /*#__PURE__*/_react.default.createElement("h1", null, props.name), /*#__PURE__*/_react.default.createElement("h1", null, props.animal), /*#__PURE__*/_react.default.createElement("h1", null, props.breed));
@@ -31275,48 +31275,24 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+const useDropdown = (label, defaultState, options) => {
+  const [state, setState] = (0, _react.useState)(defaultState);
+  const id = `use-dropdown-${label.replace(" ", " ").toLowerCase()}`;
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+  const Dropdown = () => /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: id
+  }, label, /*#__PURE__*/_react.default.createElement("select", {
+    id: id,
+    value: state,
+    onChange: e => setState(e.target.value),
+    onBlur: e => setState(e.target.value),
+    disabled: !options.length
+  }, /*#__PURE__*/_react.default.createElement("option", null), options.map(item => /*#__PURE__*/_react.default.createElement("option", {
+    key: item,
+    value: item
+  }, item))));
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var useDropdown = function useDropdown(label, defaultState, options) {
-  var _useState = (0, _react.useState)(defaultState),
-      _useState2 = _slicedToArray(_useState, 2),
-      state = _useState2[0],
-      setState = _useState2[1];
-
-  var id = "use-dropdown-".concat(label.replace(" ", " ").toLowerCase());
-
-  var Dropdown = function Dropdown() {
-    return /*#__PURE__*/_react.default.createElement("label", {
-      htmlFor: id
-    }, label, /*#__PURE__*/_react.default.createElement("select", {
-      id: id,
-      value: state,
-      onChange: function onChange(e) {
-        return setState(e.target.value);
-      },
-      onBlur: function onBlur(e) {
-        return setState(e.target.value);
-      },
-      disabled: !options.length
-    }, /*#__PURE__*/_react.default.createElement("option", null), options.map(function (item) {
-      return /*#__PURE__*/_react.default.createElement("option", {
-        key: item,
-        value: item
-      }, item);
-    })));
-  };
-
-  return [state, Dropdown];
+  return [state, Dropdown, setState];
 };
 
 var _default = useDropdown;
@@ -31341,65 +31317,54 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var SearchParams = function SearchParams() {
-  var _useState = (0, _react.useState)("Seatle WA"),
-      _useState2 = _slicedToArray(_useState, 2),
-      location = _useState2[0],
-      setLocation = _useState2[1]; // const [animal, setAnimal] = useState("");
+const SearchParams = () => {
+  const [location, setLocation] = (0, _react.useState)("Seatle WA"); // const [animal, setAnimal] = useState("");
   // const [breed, setBreed] = useState("");
 
+  const [animal, AnimalDropdown] = (0, _UseDropdown.default)("Animal", "Dog", _pet.ANIMALS);
+  const [breed, BreedDropdown, setBreed] = (0, _UseDropdown.default)("Breed", "", breeds);
+  const [breeds, setBreeds] = (0, _react.useState)([]);
+  const [pets, setPets] = (0, _react.useState)([]);
 
-  var _useDropdown = (0, _UseDropdown.default)("Animal", "Dog", _pet.ANIMALS),
-      _useDropdown2 = _slicedToArray(_useDropdown, 2),
-      animal = _useDropdown2[0],
-      AnimalDropdown = _useDropdown2[1];
+  async function requestPets() {
+    const {
+      animals
+    } = await _pet.default.animals({
+      location,
+      breed,
+      type: animal
+    });
+    setPets(animals || []);
+  }
 
-  var _useDropdown3 = (0, _UseDropdown.default)("Breed", "", breeds),
-      _useDropdown4 = _slicedToArray(_useDropdown3, 2),
-      breed = _useDropdown4[0],
-      BreedDropdown = _useDropdown4[1];
-
-  var _useState3 = (0, _react.useState)([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      breeds = _useState4[0],
-      setBreeds = _useState4[1];
-
-  (0, _react.useEffect)(function () {
+  (0, _react.useEffect)(() => {
+    setBreed("");
     setBreeds([]);
     setBreeds("");
 
-    _pet.default.breeds(animal).then(function (_ref) {
-      var breeds = _ref.breeds;
-      var breedStrings = breeds.map(function (_ref2) {
-        var name = _ref2.name;
-        return name;
-      });
+    _pet.default.breeds(animal).then(({
+      breeds
+    }) => {
+      const breedStrings = breeds.map(({
+        name
+      }) => name);
       setBreeds(breedStrings);
     }, console.error);
   }, [animal]);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "search-params"
-  }, /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", {
+  }, /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: e => {
+      e.preventDefault();
+      requestPets();
+    }
+  }, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "location"
   }, "Location", /*#__PURE__*/_react.default.createElement("input", {
     id: "location",
     value: location,
     placeholder: "Location",
-    onChange: function onChange(e) {
-      return setLocation(e.target.value);
-    }
+    onChange: e => setLocation(e.target.value)
   })), /*#__PURE__*/_react.default.createElement(AnimalDropdown, null), /*#__PURE__*/_react.default.createElement(BreedDropdown, null), /*#__PURE__*/_react.default.createElement("button", null, "Submit")));
 };
 
@@ -31426,7 +31391,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //         React.createElement(Pet, { name: "Hatiko", animal: "kingkong", breed: "bananas" })
 //     ])
 // }
-var App = function App() {
+const App = () => {
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Adopt Me!"), /*#__PURE__*/_react.default.createElement(_SearchParams.default, null));
 };
 
@@ -31459,7 +31424,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56784" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61208" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

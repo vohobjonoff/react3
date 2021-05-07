@@ -10,12 +10,25 @@ const SearchParams = () => {
     // const [animal, setAnimal] = useState("");
     // const [breed, setBreed] = useState("");
     const [animal, AnimalDropdown] = useDropdown("Animal", "Dog", ANIMALS);
-    const [breed, BreedDropdown] = useDropdown("Breed", "", breeds);
+    const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
     const [breeds, setBreeds] = useState([]);
+    const [pets, setPets] = useState([])
+
+
+    async function requestPets() {
+        const { animals } = await pet.animals({
+            location,
+            breed,
+            type: animal
+        })
+
+        setPets(animals || [])
+    }
 
     useEffect(() => {
-        setBreeds([])
-        setBreeds("")
+        setBreed("");
+        setBreeds([]);
+        setBreeds("");
         pet.breeds(animal).then(({ breeds }) => {
             const breedStrings = breeds.map(({ name }) => name)
             setBreeds(breedStrings)
@@ -25,7 +38,12 @@ const SearchParams = () => {
 
     return (
         <div className="search-params">
-            <form>
+            <form
+                onSubmit={e => {
+                    e.preventDefault()
+                    requestPets()
+                }}
+            >
                 <label htmlFor="location">
                     Location
                     <input
