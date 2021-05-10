@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "parcel src/index.html",
     "format": "prettier --write\"src/**/*.{js,jsx}\"",
-      "dev:mock": "cross-env PET_MOCK=mock npm run dev",
+    "dev:mock": "cross-env PET_MOCK=mock npm run dev",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,5 +29,7 @@
     "react-dom": "^17.0.2"
   },
   "description": "",
-  "browserslist": ["last 2 chrome versions"]
+  "browserslist": [
+    "last 2 chrome versions"
+  ]
 }
