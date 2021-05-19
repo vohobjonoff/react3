@@ -4,6 +4,7 @@ import React from 'react'
 import ErrorBoundary from './ErrorBoundary'
 
 
+
 class Deatails extends React.Component {
     constructor() {
         super();
