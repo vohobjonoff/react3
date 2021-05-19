@@ -1,6 +1,7 @@
 import Recat from 'react'
 import pet from '@frontendmasters/pet'
 import React from 'react'
+import ErrorBoundary from './ErrorBoundary'
 
 
 class Deatails extends React.Component {
@@ -47,4 +48,12 @@ class Deatails extends React.Component {
             </div>
         )
     }
+}
+
+export default function DetailsErrorBoundary(props) {
+    return (
+        <ErrorBoundary>
+            <Details /> {...props}
+        </ErrorBoundary>
+    )
 }
